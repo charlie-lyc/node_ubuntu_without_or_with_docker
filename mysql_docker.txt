@@ -1,44 +1,44 @@
-# install docker
+# Install docker
 $ apt update
 $ apt upgrade
 $ apt install docker.io
 
-# create network (optional)
+# Create network (optional)
 $ docker network create mynetwork
 
-# pull docker image
+# Pull docker image
 $ docker pull mysql:latest
 
-# run docker container
+# Run docker container
 $ docker run --name mysql-container --network mynetwork -e MYSQL_ROOT_PASSWORD=your_password -d mysql:latest
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# custom configuration with 'my.cnf' file (optional)
+# Custom configuration with 'my.cnf' file (optional)
 [mysqld]
 bind-address = 0.0.0.0
 
-# run docker container with 'my.cnf' file
+# Run docker container with 'my.cnf' file
 $ docker run --name mysql-container --network mynetwork -v /path/to/my.cnf:/etc/mysql/my.cnf -e MYSQL_ROOT_PASSWORD=your_password -d mysql:latest
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# persist data
+# Persist data
 $ docker run --name mysql-container --network mynetwork -v mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=your_password -d mysql:latest
 
-# expose port                          <ex>:<in>    
+# Expose port                          <ex>:<in>    
 $ docker run --name mysql-container -p 3307:3306 --network mynetwork -v mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=your_password -d mysql:latest
 
-# restart always   <nonstop>
+# Restart always   <nonstop>
 $ docker run --restart always --name mysql-container -p 3307:3306 --network mynetwork -v mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=your_password -d mysql:latest
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# access to db from another container in the same network
+# Access to db from another container in the same network
 $ docker run -it --network mynetwork --rm mysql mysql -h mysql-container -u root -p
 Enter password:
 
-# access to db from host machine
+# Access to db from host machine
 $ docker exec -it mysql-container mysql -u root -p
 Enter password:
