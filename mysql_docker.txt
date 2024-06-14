@@ -1,3 +1,52 @@
+# Install MySQL
+$ apt update
+$ apt upgrade
+$ apt install mysql-server
+
+# Secure installation
+$ mysql_secure_installation
+
+# Start server
+$ systemctl start mysql
+
+# Auto restart on reboot
+$ systemctl enable mysql
+
+# Check status
+$ systemctl status mysql
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Configuration (if need)
+$ nano /etc/mysql/mysql.conf.d/mysqld.cnf
+... by default
+bind-address = 0.0.0.0
+...
+
+# Or
+$ nano /etc/mysql/my.cnf
+
+# Restart server
+$ systemctl restart mysql
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Initial access to server
+$ mysql
+
+# Create user
+> create user '<username>'@'%' identified by '<password>';
+
+# Grant privileges
+> grant all privileges on database_name.* to '<username>'@'%';
+
+# Flush privileges to apply changes after granting above
+> flush privileges;
+
+# Restart server
+$ systemctl restart mysql
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Install docker
 $ apt update
 $ apt upgrade
@@ -13,7 +62,6 @@ $ docker pull mysql:latest
 $ docker run --name mysql-container --network mynetwork -e MYSQL_ROOT_PASSWORD=your_password -d mysql:latest
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 # Custom configuration with 'my.cnf' file (optional)
 [mysqld]
 bind-address = 0.0.0.0
@@ -22,7 +70,6 @@ bind-address = 0.0.0.0
 $ docker run --name mysql-container --network mynetwork -v /path/to/my.cnf:/etc/mysql/my.cnf -e MYSQL_ROOT_PASSWORD=your_password -d mysql:latest
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 # Persist data
 $ docker run --name mysql-container --network mynetwork -v mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=your_password -d mysql:latest
 
@@ -33,12 +80,28 @@ $ docker run --name mysql-container -p 3307:3306 --network mynetwork -v mysql-da
 $ docker run --restart always --name mysql-container -p 3307:3306 --network mynetwork -v mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=your_password -d mysql:latest
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 # Access to db from another container in the same network
 $ docker run -it --network mynetwork --rm mysql mysql -h mysql-container -u root -p
 Enter password:
 
 # Access to db from host machine
 $ docker exec -it mysql-container mysql -u root -p
+
 Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 13
+Server version: 8.4.0 MySQL Community Server - GPL
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+> create user '<username>'@'%' identified by '<password>';
+...
+> grant all privileges on database_name.* to '<username>'@'%';
+...
+> flush privileges;
+...
+> exit
+Bye
+$ docker restart mysql-container 
