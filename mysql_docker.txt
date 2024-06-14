@@ -33,10 +33,10 @@ $ systemctl restart mysql
 $ mysql
 
 # Create user
-> create user '<username>'@'%' identified by '<password>';
+> create user '<username>'@'<hostname or ip>' identified by '<password>';
 
 # Grant privileges
-> grant all privileges on database_name.* to '<username>'@'%';
+> grant all privileges on database_name.* to '<username>'@'<hostname or ip>';
 
 # Flush privileges to apply changes after granting above
 > flush privileges;
@@ -96,9 +96,9 @@ Oracle is a registered trademark of Oracle Corporation and/or its
 affiliates. Other names may be trademarks of their respective
 owners.
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-> create user '<username>'@'%' identified by '<password>';
+> create user '<username>'@'<hostname or ip>' identified by '<password>';
 ...
-> grant all privileges on database_name.* to '<username>'@'%';
+> grant all privileges on database_name.* to '<username>'@'<hostname or ip>';
 ...
 > flush privileges;
 ...
