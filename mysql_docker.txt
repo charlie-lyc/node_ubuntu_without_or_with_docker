@@ -16,7 +16,7 @@ $ systemctl enable mysql
 $ systemctl status mysql
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Configuration (if need)
+# Configure
 $ nano /etc/mysql/mysql.conf.d/mysqld.cnf
 ... by default
 bind-address = 0.0.0.0
@@ -33,10 +33,10 @@ $ systemctl restart mysql
 $ mysql
 
 # Create user
-> create user '<username>'@'<hostname or ip>' identified by '<password>';
+> create user '<username>'@'%' identified by '<password>';
 
 # Grant privileges
-> grant all privileges on database_name.* to '<username>'@'<hostname or ip>';
+> grant all privileges on database_name.* to '<username>'@'%';
 
 # Flush privileges to apply changes after granting above
 > flush privileges;
@@ -62,7 +62,9 @@ $ docker pull mysql:latest
 $ docker run --name mysql-container --network mynetwork -e MYSQL_ROOT_PASSWORD=your_password -d mysql:latest
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Custom configuration with 'my.cnf' file (optional)
+
+# Configure with 'my.cnf' file
+...
 [mysqld]
 bind-address = 0.0.0.0
 
