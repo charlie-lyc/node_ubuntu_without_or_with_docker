@@ -44,6 +44,30 @@ $ mysql -u root (-p)
 # Flush privileges to apply changes after granting above
 > flush privileges;
 
+# Exit from server
+> exit
+
+# Restart server
+$ systemctl restart mysql
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Fire wall (if need)
+
+$ ufw enable 
+Command may disrupt existing ssh connections. Proceed with operation (y|n)? y
+Firewall is active and enabled on system startup
+
+# Allow port
+$ ufw allow 3306
+
+... maybe need
+% ufw allow ssh
+% ufw allow http
+% ufw allow https
+...
+
 # Restart server
 $ systemctl restart mysql
 
