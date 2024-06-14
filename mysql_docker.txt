@@ -29,14 +29,17 @@ $ nano /etc/mysql/my.cnf
 $ systemctl restart mysql
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Initial access to server
-$ mysql
+# Access to server (as a root user)
+$ mysql -u root (-p)
+
+# Create database
+> create database <dbname>;
 
 # Create user
 > create user '<username>'@'%' identified by '<password>';
 
 # Grant privileges
-> grant all privileges on database_name.* to '<username>'@'%';
+> grant all privileges on <dbname>.* to '<username>'@'%';
 
 # Flush privileges to apply changes after granting above
 > flush privileges;
@@ -64,7 +67,7 @@ $ docker run --name mysql-container --network mynetwork -e MYSQL_ROOT_PASSWORD=y
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Configure with 'my.cnf' file
-...
+... by default
 [mysqld]
 bind-address = 0.0.0.0
 
@@ -82,11 +85,11 @@ $ docker run --name mysql-container -p 3307:3306 --network mynetwork -v mysql-da
 $ docker run --restart always --name mysql-container -p 3307:3306 --network mynetwork -v mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=your_password -d mysql:latest
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Access to db from another container in the same network
+# Access to db from another container in the same network (as a root user)
 $ docker run -it --network mynetwork --rm mysql mysql -h mysql-container -u root -p
 Enter password:
 
-# Access to db from host machine
+# Access to db from host machine (as a root user)
 $ docker exec -it mysql-container mysql -u root -p
 
 Enter password:
@@ -98,12 +101,15 @@ Oracle is a registered trademark of Oracle Corporation and/or its
 affiliates. Other names may be trademarks of their respective
 owners.
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+> create database <dbname>;
+...
 > create user '<username>'@'%' identified by '<password>';
 ...
-> grant all privileges on database_name.* to '<username>'@'%';
+> grant all privileges on <dbname>.* to '<username>'@'%';
 ...
 > flush privileges;
 ...
 > exit
 Bye
+
 $ docker restart mysql-container 
