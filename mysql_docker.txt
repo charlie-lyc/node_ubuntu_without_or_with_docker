@@ -86,6 +86,7 @@ $ docker network create mynetwork
 $ docker pull mysql:latest
 
 # Run docker container
+# docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 $ docker run --name mysql-container --network mynetwork -e MYSQL_ROOT_PASSWORD=your_password -d mysql:latest
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
