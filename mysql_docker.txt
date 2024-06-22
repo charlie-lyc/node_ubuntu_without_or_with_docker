@@ -105,8 +105,11 @@ $ docker run --name mysql-container --network mynetwork -v mysql-data:/var/lib/m
 # Expose port                          <ex>:<in>    
 $ docker run --name mysql-container -p 3307:3306 --network mynetwork -v mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=your_password -d mysql:latest
 
-# Restart always   <nonstop>
-$ docker run --restart always --name mysql-container -p 3307:3306 --network mynetwork -v mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=your_password -d mysql:latest
+# Restart always
+$ docker run --restart=always --name mysql-container -p 3307:3306 --network mynetwork -v mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=your_password -d mysql:latest
+
+# OR already in process
+$ docker update --restart=always <container>
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Access to db from another container in the same network (as a root user)
