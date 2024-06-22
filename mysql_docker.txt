@@ -108,7 +108,7 @@ $ docker run --name mysql-container -p 3307:3306 --network mynetwork -v mysql-da
 # Restart always
 $ docker run --restart=always --name mysql-container -p 3307:3306 --network mynetwork -v mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=your_password -d mysql:latest
 
-# OR already in process
+# OR already in running container
 $ docker update --restart=always <container>
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
