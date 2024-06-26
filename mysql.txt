@@ -140,4 +140,7 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 > exit
 Bye
 
+# 잊지말고 새로운 설정 적용
 $ docker restart mysql-container 
+
+
