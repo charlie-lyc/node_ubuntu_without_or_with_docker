@@ -1,1 +1,54 @@
+# Install NVM
+$ apt update
+$ apt upgrade
+$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+$ nvm -v
 
+# Install Node
+$ nvm install 20
+$ nvm use 20
+$ node -v
+$ npm -v
+
+# Upload project or clone git
+$ git clone <git_url_project>
+
+# Install dependencies
+$ cd <project>
+$ npm install
+
+# Build the React application
+$ cd <project>
+$ npm run build
+
+# Install Node server
+$ npm install -g serve
+
+# Serve static: folder name is probably 'build' or 'dist'?
+$ serve -s <folder_name> -p <port_number>
+
+# Install process manager
+$ npm install -g pm2
+
+# Serve in background
+$ pm2 serve <folder_name> <port_number>
+
+# Restart rebooting
+$ pm2 startup
+...
+# And freeze processesp list
+$ pm2 save
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Install docker
+$ apt update
+$ apt upgrade
+$ apt install docker.io
+
+# Pull docker image
+$ docker pull mysql:latest
+
+# Run docker container
+$ docker run --name mysql-container --network mynetwork -e MYSQL_ROOT_PASSWORD=your_password -d mysql:latest
