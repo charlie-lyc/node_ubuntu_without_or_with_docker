@@ -41,7 +41,8 @@ $ pm2 save
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-## VERY USEFUL when host machine doesn't support latest node version on host machine!
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## VERY USEFUL when host machine doesn't support latest version of Node on host machine!
 
 # Install docker
 $ apt update
@@ -51,7 +52,34 @@ $ apt install docker.io
 # Pull docker image
 $ docker pull node:20
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Write Dockerfile
 
+# Use an official Node.js runtime as a parent image
+FROM node:20
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the application code to the working directory
+COPY . .
+
+# Install dependencies
+RUN npm install
+
+# Build the React application
+RUN npm run build
+
+# Install a simple HTTP server to serve the static files
+RUN npm install -g serve
+
+# Expose the port the app runs on
+EXPOSE 8080
+
+# Set the command to run the app
+CMD ["serve", "-s", "dist", "-p", "8080"]
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # Run docker container
-$ docker run --name mysql-container --network mynetwork -e MYSQL_ROOT_PASSWORD=your_password -d mysql:latest
+$ docker run --restart always --name <container_name> -p 8080:8080 -d node:20
