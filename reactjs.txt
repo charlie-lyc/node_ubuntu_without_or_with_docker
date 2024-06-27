@@ -36,7 +36,7 @@ $ pm2 serve <folder_name> <port_number>
 # Restart rebooting
 $ pm2 startup
 ...
-# And freeze processesp list
+# And freeze process list
 $ pm2 save
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
