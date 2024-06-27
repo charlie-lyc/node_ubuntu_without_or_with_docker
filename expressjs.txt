@@ -1,1 +1,101 @@
 
+# Install NVM
+$ apt update
+$ apt upgrade
+$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+$ nvm -v
+
+# Install Node
+$ nvm install 20
+$ nvm use 20
+$ node -v
+$ npm -v
+
+# Upload project or clone git
+$ git clone <git_url_project>
+
+# Install dependencies
+$ cd <project>
+$ npm install
+
+# Install process manager
+$ npm install -g pm2
+
+# Run in background
+$ pm2 start.js <server_file> --node-args 'port=8081'
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Setup run environment
+$ nano ecosystem.config.js
+module.exports = {
+    apps: [
+      {
+        name: 'seawater-battery-api',
+        script: 'server.js',
+        env: {
+          COMMON_VARIABLE: true,
+        },
+        env_development: {
+          NODE_ENV: 'development',
+        },
+        env_production: {
+          NODE_ENV: 'production',
+        },
+
+      },
+
+    ],
+
+  }
+
+# Run with specific envirionment
+$ pm2 start ecosystem.config.js --env <development_or_production> --node-args 'port=8081' 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Restart rebooting
+$ pm2 startup
+...
+# And freeze process list
+$ pm2 save
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## VERY USEFUL when host machine doesn't support latest version of Node on host machine!
+
+# Install docker
+$ apt update
+$ apt upgrade
+$ apt install docker.io
+
+# Pull docker image
+$ docker pull node:20
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Write Dockerfile
+
+# Use an official Node.js runtime as a parent image
+FROM node:20
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the application code to the working directory
+COPY . .
+
+# Install dependencies
+RUN npm install
+
+# Expose the port the app runs on
+EXPOSE 8081
+
+# Set the command to run the app
+CMD ["npm", "start"]
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Buid docker image with Dockerfile
+$ docker build -t <image_name> node:20
+
+# Run docker container
+$ docker run --restart always --name <container_name> -p 8081:8081 -d node:20
