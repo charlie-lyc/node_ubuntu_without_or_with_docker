@@ -81,5 +81,8 @@ CMD ["serve", "-s", "dist", "-p", "8080"]
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+# Buid docker image with Dockerfile
+$ docker build -t <image_name> node:20
+
 # Run docker container
 $ docker run --restart always --name <container_name> -p 8080:8080 -d node:20
