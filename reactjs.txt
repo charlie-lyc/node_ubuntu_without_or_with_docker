@@ -41,6 +41,7 @@ $ pm2 save
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## VERY USEFUL when host machine doesn't support latest node version on host machine!
 
 # Install docker
 $ apt update
@@ -48,7 +49,9 @@ $ apt upgrade
 $ apt install docker.io
 
 # Pull docker image
-$ docker pull mysql:latest
+$ docker pull node:20
+
+# Write Dockerfile
 
 # Run docker container
 $ docker run --name mysql-container --network mynetwork -e MYSQL_ROOT_PASSWORD=your_password -d mysql:latest
