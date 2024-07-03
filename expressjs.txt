@@ -48,10 +48,10 @@ module.exports = {
 
   }
 
-# Run with specific envirionment
-$ pm2 start ecosystem.config.js --name <app_name> --env production --node-args 'port=8081' 
+# Run with specific envirionment : --name 옵션은 'name' 의 값 'seawater-battery-api' 로 고정
+$ pm2 start ecosystem.config.js --env production --node-args 'port=8081' 
 # OR
-$ pm2 start ecosystem.config.js --name <app_name> --env development --node-args 'port=9081' 
+$ pm2 start ecosystem.config.js --env development --node-args 'port=9081' 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Restart rebooting
