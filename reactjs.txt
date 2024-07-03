@@ -35,7 +35,7 @@ $ pm2 serve <folder_name> <port_number> --name <app_name>
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Restart rebooting
+# Automatic restart rebooting
 $ pm2 startup
 ...
 # And freeze process list
