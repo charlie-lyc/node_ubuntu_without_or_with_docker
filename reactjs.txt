@@ -31,7 +31,7 @@ $ serve -s <folder_name> -p <port_number>
 $ npm install -g pm2
 
 # Serve in background
-$ pm2 serve <folder_name> <port_number>
+$ pm2 serve <folder_name> <port_number> --name <app_name>
 
 # Restart rebooting
 $ pm2 startup
