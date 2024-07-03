@@ -22,7 +22,7 @@ $ npm install
 $ npm install -g pm2
 
 # Run in background
-$ pm2 start.js <server_file> --node-args 'port=8081'
+$ pm2 start <server_file> --node-args 'port=8081'
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Setup run environment
